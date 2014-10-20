@@ -1,0 +1,21 @@
+{
+  "name": "NodeSimpleWebsite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zzeneg",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.9.8",
+    "hbs": "^2.7.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.4.19",
+    "grunt-ts": "^1.12.1"
+  }
+}

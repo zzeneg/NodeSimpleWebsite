@@ -1,43 +1,37 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+########################
+# node.js / npm
+########################
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
 
-# Folder config file
-Desktop.ini
+pids
+logs
+results
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+node_modules
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+npm-debug.log
 
-# =========================
-# Operating System Files
-# =========================
+########################
+# typescript
+########################
+.tscache
 
-# OSX
-# =========================
 
-.DS_Store
-.AppleDouble
-.LSOverride
+########################
+# sublime text
+########################
+*.sublime-project
+*.sublime-workspace
+.sublimets
 
-# Icon must end with two \r
-Icon
 
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+########################
+# project
+########################
