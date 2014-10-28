@@ -21,7 +21,7 @@ module.exports = (app, passport) => {
             }
 
             return res.send({ success : true, message : 'authentication succeeded' });
-        });
+        })(req, res, next);
     });
 
     app.get('/login', (req, res) => {
