@@ -20,7 +20,7 @@ module.exports = (passport) => {
             usernameField: 'email',
             passwordField: 'password'
         },
-        (req, email, password, done) => {
+        (email, password, done) => {
             console.log('SIGNUP');
             // query the user from the database
             // don't care the way I query from database, you can use

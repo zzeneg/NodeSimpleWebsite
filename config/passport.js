@@ -15,7 +15,7 @@ module.exports = function (passport) {
     passport.use('local-signup', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
-    }, function (req, email, password, done) {
+    }, function (email, password, done) {
         console.log('SIGNUP');
 
         User.find({ where: { email: email } }).success(function (user) {
