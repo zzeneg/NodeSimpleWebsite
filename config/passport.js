@@ -19,9 +19,9 @@ module.exports = function (passport) {
         console.log('SIGNUP');
 
         User.find({ where: { email: email } }).success(function (user) {
-            if (user)
+            if (user) {
                 return done(null, false, { message: "The user is not exist" });
-            else {
+            } else {
                 User.create({
                     username: email,
                     password: password

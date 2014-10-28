@@ -22,6 +22,8 @@
     "grunt": "^0.4.5",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-express-server": "^0.4.19",
-    "grunt-ts": "^1.12.1"
+    "grunt-ts": "^1.12.1",
+    "grunt-tslint": "^0.4.4",
+    "tslint": "^0.4.14"
   }
 }

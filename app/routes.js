@@ -17,6 +17,7 @@ module.exports = function (app, passport) {
             if (!user) {
                 return res.send({ success: false, message: 'authentication failed' });
             }
+
             return res.send({ success: true, message: 'authentication succeeded' });
         });
     });
