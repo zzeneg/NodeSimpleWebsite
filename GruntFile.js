@@ -3,7 +3,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         ts: {
             build: {
-                src: ['*.ts'],
+                src: ['*.ts', 'app/**/*.ts', 'config/**/*.ts'],
             },
             options: {
                 sourceMap: false,
@@ -18,7 +18,7 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            files: ['*.ts'],
+            files: ['**/*.ts'],
             tasks: ['ts', 'express:dev'],
             options: {
                 spawn: false

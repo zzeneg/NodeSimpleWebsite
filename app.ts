@@ -1,61 +1,20 @@
 /// <reference path="typings/node/node.d.ts" />
 
 var express = require('express');
+var passport = require('passport');
+var session = require('express-session');
+
+
+
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/public'));
-app.get('/', function(req, res){
-  res.render('index');
-});
 
-app.get('/simple', function(req, res){
-  var data = {name: 'Gorilla'};
-  res.render('simple', data);
-});
+app.use(session({ secret: 'victoriasecret'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get('/complex', function(req, res){
-  var data = {
-    name: 'Gorilla',
-    address: {
-      streetName: 'Broadway',
-      streetNumber: '721',
-      floor: 4,
-      addressType: {
-        typeName: 'residential'
-      }
-    }
-  };
-  res.render('complex', data);
-});
-
-app.get('/loop', function(req, res){
-  var basketballPlayers = [
-    {name: 'Lebron James', team: 'the Heat'},
-    {name: 'Kevin Durant', team: 'the Thunder'},
-    {name: 'Kobe Jordan',  team: 'the Lakers'}
-  ];
-  
-  var days = [
-    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
-  ];
-  
-  var data = {
-    basketballPlayers: basketballPlayers,
-    days: days
-  };
-  
-  res.render('loop', data);
-});
-
-app.get('/logic', function(req, res){
-  var data = {
-    upIsUp: true,
-    downIsUp: false,
-    skyIsBlue: "yes"
-  };
-  
-  res.render('logic', data);
-});
+require('./config/passport')(passport);
+require('./app/routes.js')(app, passport);
 
 app.listen(3000);

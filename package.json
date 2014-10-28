@@ -10,7 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.9.8",
-    "hbs": "^2.7.0"
+    "express-session": "^1.9.1",
+    "hbs": "^2.7.0",
+    "mysql": "^2.5.2",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "pg": "^3.6.2",
+    "sequelize": "^2.0.0-rc2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
