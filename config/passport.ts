@@ -33,7 +33,7 @@ module.exports = (passport) => {
                     }
                     else {
                         User.create({
-                                username: email,
+                                email: email,
                                 password: password
                             })
                             .complete((err, user) => {

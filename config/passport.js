@@ -23,7 +23,7 @@ module.exports = function (passport) {
                 return done(null, false, { message: "The user is not exist" });
             } else {
                 User.create({
-                    username: email,
+                    email: email,
                     password: password
                 }).complete(function (err, user) {
                     if (err) {
