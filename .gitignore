@@ -22,7 +22,7 @@ npm-debug.log
 # typescript
 ########################
 .tscache
-
+.baseDir.*
 
 ########################
 # sublime text
@@ -35,3 +35,4 @@ npm-debug.log
 ########################
 # project
 ########################
+build

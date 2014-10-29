@@ -1,3 +1,5 @@
+/// <reference path="../../typings/node/node.d.ts" />
+
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('test', 'node', 'passw0rd', {
     dialect: "mysql",
@@ -5,7 +7,7 @@ var sequelize = new Sequelize('test', 'node', 'passw0rd', {
 });
 
 sequelize
-    .authenticate()
+    .authenticate( )
     .complete((err) => {
         if (!!err) {
             console.log('Unable to connect to the database:', err);

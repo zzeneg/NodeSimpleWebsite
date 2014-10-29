@@ -1,4 +1,4 @@
-/// <reference path="../typings/node/node.d.ts" />
+/// <reference path="../../typings/node/node.d.ts" />
 
 module.exports = (app, passport) => {
     app.get('/', (req, res) => {

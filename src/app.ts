@@ -1,4 +1,4 @@
-/// <reference path="typings/node/node.d.ts" />
+/// <reference path="../typings/node/node.d.ts" />
 
 var express = require('express');
 var passport = require('passport');
@@ -18,4 +18,4 @@ app.use(bodyParser());
 require('./config/passport')(passport);
 require('./app/routes.js')(app, passport);
 
-app.listen(3000);
+app.listen(3001);

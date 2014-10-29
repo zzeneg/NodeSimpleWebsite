@@ -1,4 +1,4 @@
-/// <reference path="../../typings/node/node.d.ts" />
+/// <reference path="../../../typings/node/node.d.ts" />
 
 // load the things we need
 var sequelize = require('./../../config/database');

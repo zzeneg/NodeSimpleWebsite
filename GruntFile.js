@@ -3,7 +3,8 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         ts: {
             build: {
-                src: ['*.ts', 'app/**/*.ts', 'config/**/*.ts'],
+                src: ['src/**/*.ts'],
+                outDir: 'build'
             },
             options: {
                 sourceMap: false,
@@ -12,13 +13,13 @@ module.exports = function(grunt) {
         express: {
             dev: {
                 options: {
-                    script: 'app.js',
+                    script: 'build/app.js',
                     delay: 100
                 }
             }
         },
         watch: {
-            files: ['**/*.ts'],
+            files: ['src/**/*.ts'],
             tasks: ['tslint', 'ts', 'express:dev'],
             options: {
                 spawn: false
@@ -29,7 +30,7 @@ module.exports = function(grunt) {
                 configuration: grunt.file.readJSON("tslint.json")
             },
             files: {
-                src: ['*.ts', 'app/**/*.ts', 'config/**/*.ts']
+                src: ['src/**/*.ts']
             }
         }
     });
