@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         },
         watch: {
             files: ['src/**/*.ts'],
-            tasks: ['tslint', 'ts', 'express:dev'],
+            tasks: ['ts', 'express:dev'],
             options: {
                 spawn: false
             }
@@ -45,5 +45,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-express-server');
 
-    grunt.registerTask('default', ['tslint', 'ts', 'express:dev', 'watch']);
+    grunt.registerTask('default', ['ts', 'express:dev', 'watch']);
+    grunt.registerTask('commit', ['tslint', 'ts']);
 }
