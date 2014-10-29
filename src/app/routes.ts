@@ -1,6 +1,6 @@
 /// <reference path="../../typings/node/node.d.ts" />
 
-module.exports = (app, passport) => {
+export function init(app, passport) {
     app.get('/', (req, res) => {
         res.render('index');
     });
@@ -9,20 +9,7 @@ module.exports = (app, passport) => {
         res.render('signup');
     });
 
-    app.post('/signup', (req, res, next) => {
-        console.log('post');
-        passport.authenticate('local-signup', (err, user, info) => {
-            if (err) {
-                return next(err); // will generate a 500 error
-            }
-            // Generate a JSON response reflecting authentication status
-            if (! user) {
-                return res.send({ success : false, message : 'authentication failed' });
-            }
-
-            return res.send({ success : true, message : 'authentication succeeded' });
-        })(req, res, next);
-    });
+    app.post('/signup', passport.authenticate('local-signup', { successRedirect: '/', failureRedirect: '/signup' }));
 
     app.get('/login', (req, res) => {
         res.render('login');
@@ -76,4 +63,6 @@ module.exports = (app, passport) => {
 
         res.render('logic', data);
     });
-};
+}
+
+

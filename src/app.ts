@@ -1,21 +1,35 @@
 /// <reference path="../typings/node/node.d.ts" />
 
-var express = require('express');
-var passport = require('passport');
-var session = require('express-session');
-var bodyParser   = require('body-parser');
+var Models = require('./app/models');
+var DB = require('./config/database');
+var Passport = require('./config/passport');
+var Routes = require('./app/routes');
 
+export class Server {
+    constructor() {
+        var passport = require('passport');
+        var express = require('express');
+        var bodyParser = require('body-parser');
+        var session = require('express-session');
 
-var app = express();
-app.set('views', __dirname + '/views');
-app.set('view engine', 'hbs');
+        var app = express();
+        app.set('views', __dirname + '/../views');
+        app.set('view engine', 'hbs');
 
-app.use(session({ secret: 'victoriasecret'}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(bodyParser());
+        app.use(session({ secret: 'victoriasecret', resave: true, saveUninitialized: true }));
+        app.use(passport.initialize());
+        app.use(passport.session());
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: true }));
 
-require('./config/passport')(passport);
-require('./app/routes.js')(app, passport);
+        DB.init('test', 'node', 'passw0rd');
+        Models.init(DB.instance);
+        Routes.init(app, passport);
 
-app.listen(3001);
+        Passport.init(passport, Models.userModel);
+
+        app.listen(3000);
+    }
+}
+
+export var server = new Server();

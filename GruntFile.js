@@ -4,11 +4,12 @@ module.exports = function(grunt) {
         ts: {
             build: {
                 src: ['src/**/*.ts'],
-                outDir: 'build'
+                outDir: 'build',
+                options: {
+                    sourceMap: false,
+                    module: 'commonjs'
+                }
             },
-            options: {
-                sourceMap: false,
-            }
         },
         express: {
             dev: {
