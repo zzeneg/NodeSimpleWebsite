@@ -2,6 +2,7 @@
 
 export function init(passport, userModel) {
     var LocalStrategy = require('passport-local').Strategy;
+    var bcrypt = require('bcrypt-nodejs');
 
     passport.serializeUser((user, done) => {
         done(null, user.id);
@@ -26,26 +27,52 @@ export function init(passport, userModel) {
                     if (!!err) {
                         return done(err);
                     }
+
                     if (user) {
                         // if the user is already exist
                         return done(null, false, {message: "The user is already exist"});
                     }
-                    else {
-                        userModel.create({
-                                email: email,
-                                password: password
-                            })
-                            .complete((err, user) => {
-                                if (err) {
-                                    console.log(err);
-                                    throw err;
-                                }
-                                return done(null, user);
-                            });
+
+                    userModel.create({
+                            email: email,
+                            password: bcrypt.hashSync(password)
+                        })
+                        .complete((err, user) => {
+                            if (err) {
+                                console.log(err);
+                                throw err;
+                            }
+                            return done(null, user);
+                        });
+                    
+            });
+        }
+    ));
+
+    passport.use('local-login', new LocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password'
+        },
+        (email, password, done) => {
+            console.log('LOGIN');
+            // query the user from the database
+            userModel.find( { where: { email: email }} )
+                .complete((err, user) => {
+                    if (err) {
+                        return done(err);
                     }
+
+                    if (!user) {
+                        // if the user is not exist
+                        return done(null, false, {message: "The user is not exist"});
+                    }
+
+                    if (!bcrypt.compareSync(password, user.password)) {
+                        return done(null, false, {message: "Wrong password"});
+                    }
+
+                    return done(null, user);
             });
         }
     ));
 }
-
-

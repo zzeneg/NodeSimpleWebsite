@@ -15,6 +15,8 @@ export function init(app, passport) {
         res.render('login');
     });
 
+    app.post('/login', passport.authenticate('local-login', { successRedirect: '/', failureRedirect: '/login' }));
+
     app.get('/simple', (req, res) => {
         var data = {name: 'Gorilla'};
         res.render('simple', data);
