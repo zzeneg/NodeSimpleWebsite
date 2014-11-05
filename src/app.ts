@@ -10,12 +10,14 @@ export class Server {
         var passport = require('passport');
         var express = require('express');
         var bodyParser = require('body-parser');
-        var session = require('express-session');
+        var session = require('cookie-session');
+        var cookieParser = require('cookie-parser');
 
         var app = express();
         app.set('views', __dirname + '/../views');
         app.set('view engine', 'hbs');
 
+        app.use(cookieParser());
         app.use(session({ secret: 'victoriasecret', resave: true, saveUninitialized: true }));
         app.use(passport.initialize());
         app.use(passport.session());
