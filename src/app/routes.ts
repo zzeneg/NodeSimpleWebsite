@@ -2,20 +2,41 @@
 
 export function init(app, passport) {
     app.get('/', (req, res) => {
-        res.render('index');
+        var data = {
+                body: 'Hello World',
+                user: ''            
+            };
+        if (req.user) {
+            data.user = req.user.dataValues.email;
+        }
+
+        res.render('index', data);
     });
 
     app.get('/signup', (req, res) => {
+        if (req.user) {
+            res.redirect('/');
+        }
+
         res.render('signup');
     });
 
     app.post('/signup', passport.authenticate('local-signup', { successRedirect: '/', failureRedirect: '/signup' }));
 
     app.get('/login', (req, res) => {
+        if (req.user) {
+            res.redirect('/');
+        }
+
         res.render('login');
     });
 
     app.post('/login', passport.authenticate('local-login', { successRedirect: '/', failureRedirect: '/login' }));
+
+    app.get('/logout', (req, res) => {
+        req.logout();
+        res.redirect('/');
+    });
 
     app.get('/simple', (req, res) => {
         var data = {name: 'Gorilla'};
