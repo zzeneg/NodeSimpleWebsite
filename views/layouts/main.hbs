@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Handlebars examples with Express 4</title>
+        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+        <link href="/bootstrap-material-design/dist/css/roboto.min.css" rel="stylesheet">
+        <link href="/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet">
+        <link href="/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+    </head>
+    <body>
+        {{> navbar}}
+        {{{body}}}
+		<script src="/jquery/dist/jquery.min.js"></script>
+		<script src="/knockout/dist/knockout.js"></script>
+		<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/bootstrap-material-design/js/ripples.min.js"></script>
+        <script src="/bootstrap-material-design/js/material.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // This command is used to initialize some elements and make them work properly
+                $.material.init();
+            });
+        </script>
+	</body>
+</html>
