@@ -11,12 +11,7 @@ export function init(db) {
         password : sequelize.STRING
     });
 
-    db.sync()
-        .complete((err) => {
-             if (!!err) {
-                 console.log('An error occurred while creating the table:', err);
-             }
-        });
+    db.sync();
 }
 
 

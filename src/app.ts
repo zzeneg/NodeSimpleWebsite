@@ -26,7 +26,7 @@ export class Server {
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
 
-        DB.init('test', 'node', 'passw0rd');
+        DB.init('test');
         Models.init(DB.instance);
         Routes.init(app, passport);
 

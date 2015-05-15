@@ -3,22 +3,14 @@
 
 export var instance;
 
-export function init(dbName: string, userName: string, password: string) {
+export function init(dbName: string) {
     var sequelize = require('sequelize');
 
-    instance = new sequelize(dbName, userName, password, {
-        dialect: "mysql",
-        port:    3306
+    instance = new sequelize(dbName, null, null, {
+        dialect: "sqlite",
+        port:    3306,
+        storage: 'test.sqlite'
     });
-    instance
-        .authenticate( )
-        .complete((err) => {
-            if (!!err) {
-                console.log('Unable to connect to the database:', err);
-            } else {
-                console.log('Connection has been established successfully.');
-            }
-        });
 }
 
 

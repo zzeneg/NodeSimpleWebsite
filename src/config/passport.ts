@@ -10,8 +10,8 @@ export function init(passport, userModel) {
 
     passport.deserializeUser((id, done) => {
         userModel.find({ where : { id: id }})
-            .complete((err, user) => {
-                done(err, user);
+            .then((user) => {
+                done(null, user);
             });
     });
 
@@ -23,11 +23,7 @@ export function init(passport, userModel) {
             console.log('SIGNUP');
             // query the user from the database
             userModel.find( { where: { email: email }} )
-                .complete((err, user) => {
-                    if (!!err) {
-                        return done(err);
-                    }
-
+                .then((user) => {
                     if (user) {
                         // if the user is already exist
                         return done(null, false, {message: "The user is already exist"});
@@ -37,11 +33,7 @@ export function init(passport, userModel) {
                             email: email,
                             password: bcrypt.hashSync(password)
                         })
-                        .complete((err, user) => {
-                            if (err) {
-                                console.log(err);
-                                throw err;
-                            }
+                        .then((user) => {
                             return done(null, user);
                         });
                     
@@ -57,11 +49,7 @@ export function init(passport, userModel) {
             console.log('LOGIN');
             // query the user from the database
             userModel.find( { where: { email: email }} )
-                .complete((err, user) => {
-                    if (err) {
-                        return done(err);
-                    }
-
+                .then((user) => {
                     if (!user) {
                         // if the user is not exist
                         return done(null, false, {message: "The user is not exist"});
