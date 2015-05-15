@@ -12,10 +12,11 @@ export class Server {
         var bodyParser = require('body-parser');
         var session = require('cookie-session');
         var cookieParser = require('cookie-parser');
-		var hbs = require('hbs');
+		var exphbs = require('express-handlebars');
 
         var app = express();
-        app.set('views', __dirname + '/../views');
+        //app.set('views', __dirname + '/../views');
+        app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs', partialsDir:"views/partials/"}));
         app.set('view engine', 'hbs');
         app.use(express.static(__dirname + '/../bower_components'));
 
@@ -31,8 +32,6 @@ export class Server {
         Routes.init(app, passport);
 
         Passport.init(passport, Models.userModel);
-
-        hbs.registerPartials(__dirname + '/../views/partials');
 
         app.listen(3000);
     }
