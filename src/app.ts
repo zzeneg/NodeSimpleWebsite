@@ -1,22 +1,23 @@
 /// <reference path="../typings/node/node.d.ts" />
 
-var Models = require('./app/models');
-var DB = require('./config/database');
-var Passport = require('./config/passport');
-var Routes = require('./app/routes');
+import Database = require('./config/database');
+import Passport = require('./config/passport');
+import Models = require('./app/models');
+import Routes = require('./app/routes');
 
-export class Server {
+class Server {
     constructor() {
         var passport = require('passport');
         var express = require('express');
         var bodyParser = require('body-parser');
         var session = require('cookie-session');
         var cookieParser = require('cookie-parser');
-		var exphbs = require('express-handlebars');
+        var exphbs = require('express-handlebars')
+        var flash = require('flash');
 
         var app = express();
         //app.set('views', __dirname + '/../views');
-        app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs', partialsDir:"views/partials/"}));
+        app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', partialsDir: "views/partials/" }));
         app.set('view engine', 'hbs');
         app.use(express.static(__dirname + '/../bower_components'));
 
@@ -26,9 +27,10 @@ export class Server {
         app.use(passport.session());
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
+        app.use(flash());
 
-        DB.init('test');
-        Models.init(DB.instance);
+        Database.init('test');
+        Models.init(Database.instance);
         Routes.init(app, passport);
 
         Passport.init(passport, Models.userModel);
@@ -37,4 +39,5 @@ export class Server {
     }
 }
 
-export var server = new Server();
+export = new Server();
+
