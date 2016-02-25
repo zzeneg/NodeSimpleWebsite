@@ -1,8 +1,7 @@
-/// <reference path="../../typings/node/node.d.ts" />
-/// <reference path="../../typings/sequelize/sequelize.d.ts" />
+import User from './../app/models/user';
 
-class Database {
-	public static instance;
+export default class Database {
+	private static instance;
 
 	public static init(dbName: string) {
 		var sequelize = require('sequelize');
@@ -12,8 +11,12 @@ class Database {
 			port: 3306,
 			storage: 'test.sqlite'
 		});
+
+		User.define(this.instance);
+
+		this.instance.sync();
 	}
 }
 
-export = Database;
+
 

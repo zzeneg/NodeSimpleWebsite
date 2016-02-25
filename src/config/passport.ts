@@ -1,9 +1,10 @@
-/// <reference path="../../typings/node/node.d.ts" />
+import User from './../app/models/user';
+import * as passport from 'passport';
+import { Strategy as LocalStrategy } from 'passport-local';
 
-class Passport {
-    
-    public static init(passport, userModel) {
-        var LocalStrategy = require('passport-local').Strategy;
+export default class Passport {
+
+    public static init() {
         var bcrypt = require('bcrypt-nodejs');
 
         passport.serializeUser((user, done) => {
@@ -11,7 +12,7 @@ class Passport {
         });
 
         passport.deserializeUser((id, done) => {
-            userModel.find({ where: { id: id } })
+            User.userModel.find({ where: { id: id } })
                 .then((user) => {
                     done(null, user);
                 });
@@ -24,21 +25,24 @@ class Passport {
             (email, password, done) => {
                 console.log('SIGNUP');
                 // query the user from the database
-                userModel.find({ where: { email: email } })
+                User.userModel.find({ where: { email: email } })
                     .then((user) => {
                         if (user) {
                             // if the user is already exist
                             return done(null, false, { message: "The user is already exist" });
                         }
 
-                        userModel.create({
-                            email: email,
-                            password: bcrypt.hashSync(password)
-                        })
-                            .then((user) => {
-                                return done(null, user);
-                            });
+                        var newUser = new User();
+                        newUser.email = email;
+                        newUser.password = bcrypt.hashSync(password);
 
+                        newUser.save().then((user) => {
+                            return done(null, user);
+                        }, (err) => {
+                            throw err;
+                        })
+                    }, (err) => {
+                        throw err;
                     });
             }
         ));
@@ -50,7 +54,7 @@ class Passport {
             (email, password, done) => {
                 console.log('LOGIN');
                 // query the user from the database
-                userModel.find({ where: { email: email } })
+                User.userModel.find({ where: { email: email } })
                     .then((user) => {
                         if (!user) {
                             // if the user is not exist
@@ -62,10 +66,10 @@ class Passport {
                         }
 
                         return done(null, user);
+                    }, (err) => {
+                        throw err;
                     });
             }
         ));
     }
 }
-
-export = Passport;

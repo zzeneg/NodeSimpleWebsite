@@ -12,6 +12,7 @@
     },
     "files": [
         "typings/main.d.ts",
+        "src/app/models/models.d.ts",
         "src/app.ts"
     ]
 }
