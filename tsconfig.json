@@ -10,9 +10,8 @@
         "outDir": "build",
         "sourceMap": false
     },
-    "files": [
-        "typings/main.d.ts",
-        "src/app/models/models.d.ts",
-        "src/app.ts"
+    "exclude": [
+        "typings",
+        "node_modules"
     ]
 }

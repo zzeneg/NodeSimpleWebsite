@@ -1,7 +1,11 @@
 {
   "ambientDependencies": {
+    "bcrypt-nodejs": "github:DefinitelyTyped/DefinitelyTyped/bcrypt-nodejs/bcrypt-nodejs.d.ts#d61a1c6578c9f0d2612a6a860ebe5f47fc716cc7",
+    "body-parser": "github:DefinitelyTyped/DefinitelyTyped/body-parser/body-parser.d.ts#9a2c50ea846ee6ae36feaea0accc77ae7b08a748",
     "config": "github:DefinitelyTyped/DefinitelyTyped/config/config.d.ts#21939fb51a4c0046a4c7ef44a10959a5faf14309",
+    "cookie-parser": "github:DefinitelyTyped/DefinitelyTyped/cookie-parser/cookie-parser.d.ts#e2001653ffbd99c2fc80a272ca80d8c958136de4",
     "express": "github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#dd638012d63e069f2c99d06ef4dcc9616a943ee4",
+    "express-handlebars": "github:DefinitelyTyped/DefinitelyTyped/express-handlebars/express-handlebars.d.ts#9027703c0bd831319dcdf7f3169f7a468537f448",
     "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#7b7aa2027a8fb6219a8bcf1b6bb12bcd0ff9539d",
     "mime": "github:DefinitelyTyped/DefinitelyTyped/mime/mime.d.ts#cb5206a8ac1c9a3ddfd126f5ecea6729b2361452",
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#20e1eb9616922d382d918cc5a21870a9dbe255f5",

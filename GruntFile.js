@@ -3,7 +3,10 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         ts: {
             build: {
-                tsconfig: true
+                tsconfig: true,
+                options: {
+                    fast: 'never'
+                }
             },
         },
         express: {
@@ -15,7 +18,7 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            files: ['src/**/*.ts'],
+            files: ['src/**/*.ts', 'tsconfig.json'],
             tasks: ['ts', 'express:dev'],
             options: {
                 spawn: false
@@ -28,6 +31,11 @@ module.exports = function(grunt) {
             files: {
                 src: ['src/**/*.ts']
             }
+        },
+        env: {
+            dev: {
+                NODE_ENV: 'development'
+            }
         }
     });
 
@@ -39,7 +47,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-tslint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-express-server');
+    grunt.loadNpmTasks('grunt-env');
 
-    grunt.registerTask('default', ['ts', 'express:dev', 'watch']);
+    grunt.registerTask('default', ['ts', 'env:dev', 'express:dev', 'watch']);
     grunt.registerTask('commit', ['tslint', 'ts']);
 }

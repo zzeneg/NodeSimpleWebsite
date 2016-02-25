@@ -3,9 +3,9 @@ import * as sequelize from 'sequelize';
 interface IUserInstance extends sequelize.Instance<Models.IUser>, Models.IUser { }
 
 interface IUserModel extends sequelize.Model<IUserInstance, Models.IUser> {
-	conformValueToType: (attrType: string, originalValue: any) => Promise<IUserInstance>;
+	//conformValueToType: (attrType: string, originalValue: any) => Promise<IUserInstance>;
 }
-	
+
 export default class User {
 
 	id: number;
@@ -23,8 +23,6 @@ export default class User {
 	}
 
 	public static define(db: sequelize.Sequelize) {
-		var sequelize = require('sequelize');
-
 		User.userModel = <IUserModel>db.define<IUserInstance, Models.IUser>('User', {
 			'id': { 'type': sequelize.INTEGER(20).UNSIGNED, allowNull: false, primaryKey: true, autoIncrement: true },
 			'email': { 'type': sequelize.STRING(128) },
@@ -45,34 +43,33 @@ export default class User {
 			// 			return sequelize.models['Attribute'].conformValueToType(type, value);
 			// 		}
 			// },
-			// 'Definition': { 'type': sequelize.BLOB, allowNull: true, defaultValue: null, get: function(named) { return JSON.parse(this.getDataValue(named)); } },
 			// 'CreatedBy': { 'type': sequelize.INTEGER(20).UNSIGNED },
 			// 'Created': { 'type': sequelize.DATE }
 		},
 			{
 				tableName: 'Users',
 				timestamps: false,
-				getterMethods:
-				{
-				},
-				classMethods:
-				{
-					conformValueToType: (attrType, originalValue) => {
-						if (originalValue === null || originalValue === undefined)
-							return originalValue;
-						var valueAsStr = originalValue.toString();
-						if (attrType === 'Boolean')
-							return valueAsStr === 'true';
-						if (attrType === 'Integer')
-							return parseInt(valueAsStr, 10);
-						if (attrType === 'Float') {
-							if (valueAsStr === '')
-								return 0.0;
-							return parseFloat(valueAsStr);
-						}
-						return valueAsStr;
-					}
-				}
+				// getterMethods:
+				// {
+				// },
+				// classMethods:
+				// {
+				// 	conformValueToType: (attrType, originalValue) => {
+				// 		if (originalValue === null || originalValue === undefined)
+				// 			return originalValue;
+				// 		var valueAsStr = originalValue.toString();
+				// 		if (attrType === 'Boolean')
+				// 			return valueAsStr === 'true';
+				// 		if (attrType === 'Integer')
+				// 			return parseInt(valueAsStr, 10);
+				// 		if (attrType === 'Float') {
+				// 			if (valueAsStr === '')
+				// 				return 0.0;
+				// 			return parseFloat(valueAsStr);
+				// 		}
+				// 		return valueAsStr;
+				// 	}
+				// }
 			});
 	}
 }

@@ -38,3 +38,5 @@ npm-debug.log
 build
 bower_components
 typings
+*.sqlite
+config/development.json

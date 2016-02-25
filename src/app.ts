@@ -1,5 +1,10 @@
+/// <reference path="../typings/main.d.ts" />
+
 import * as passport from 'passport';
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
+import * as exphbs from 'express-handlebars';
 
 import Database from './config/database';
 import Passport from './config/passport';
@@ -9,11 +14,8 @@ module Website {
 
     export class Server {
         constructor() {
-            
-            var bodyParser = require('body-parser');
+
             var session = require('cookie-session');
-            var cookieParser = require('cookie-parser');
-            var exphbs = require('express-handlebars')
             var flash = require('flash');
 
             var app = express();
@@ -40,5 +42,5 @@ module Website {
     }
 }
 
-new Website.Server();
+var server = new Website.Server();
 

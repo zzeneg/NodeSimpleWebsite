@@ -9,7 +9,7 @@ export default class Router {
         router.get('/', (req, res) => {
             var data = {
                 body: 'Hello World',
-                user: ''
+                user: '',
             };
 
             if (req.user) {

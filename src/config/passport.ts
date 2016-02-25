@@ -1,14 +1,13 @@
 import User from './../app/models/user';
 import * as passport from 'passport';
 import * as config from 'config';
+import * as bcrypt from 'bcrypt-nodejs';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as TwitterStrategy } from 'passport-twitter';
 
 export default class Passport {
 
     public static init() {
-        var bcrypt = require('bcrypt-nodejs');
-
         passport.serializeUser((user, done) => {
             done(null, user.id);
         });
@@ -55,10 +54,9 @@ export default class Passport {
 
         passport.use('local-signup', new LocalStrategy({
             usernameField: 'email',
-            passwordField: 'password'
+            passwordField: 'password',
         },
             (email, password, done) => {
-                console.log('SIGNUP');
                 // query the user from the database
                 User.userModel.find({ where: { email: email } })
                     .then((user) => {
@@ -75,7 +73,7 @@ export default class Passport {
                             return done(null, user);
                         }, (err) => {
                             throw err;
-                        })
+                        });
                     }, (err) => {
                         throw err;
                     });
@@ -84,10 +82,9 @@ export default class Passport {
 
         passport.use('local-login', new LocalStrategy({
             usernameField: 'email',
-            passwordField: 'password'
+            passwordField: 'password',
         },
             (email, password, done) => {
-                console.log('LOGIN');
                 // query the user from the database
                 User.userModel.find({ where: { email: email } })
                     .then((user) => {
