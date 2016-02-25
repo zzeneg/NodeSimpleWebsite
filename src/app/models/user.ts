@@ -11,6 +11,10 @@ export default class User {
 	id: number;
 	email: string;
 	password: string;
+	twitterId: string;
+	twitterToken: string;
+	twitterUserName: string;
+	twitterDisplayName: string;
 
 	public static userModel: IUserModel;
 
@@ -25,6 +29,10 @@ export default class User {
 			'id': { 'type': sequelize.INTEGER(20).UNSIGNED, allowNull: false, primaryKey: true, autoIncrement: true },
 			'email': { 'type': sequelize.STRING(128) },
 			'password': { 'type': sequelize.STRING(128) },
+			'twitterId': { 'type': sequelize.STRING(128) },
+			'twitterToken': { 'type': sequelize.STRING(128) },
+			'twitterUserName': { 'type': sequelize.STRING(128) },
+			'twitterDisplayName': { 'type': sequelize.STRING(128) },
 			// 'Type': {
 			// 	'type': sequelize.ENUM('Boolean', 'Date', 'DateTime', 'Enumeration', 'Float', 'Integer', 'JSON',
 			// 		'RichText', 'String', 'Text')

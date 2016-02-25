@@ -4,5 +4,9 @@ declare module Models {
 		id: number;
 		email: string;
 		password: string;
+		twitterId: string;
+		twitterToken: string;
+		twitterUserName: string;
+		twitterDisplayName: string;
 	}
 }
