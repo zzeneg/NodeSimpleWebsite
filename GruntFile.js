@@ -3,12 +3,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         ts: {
             build: {
-                src: ['src/**/*.ts'],
-                outDir: 'build',
-                options: {
-                    sourceMap: false,
-                    module: 'commonjs'
-                }
+                tsconfig: true
             },
         },
         express: {
