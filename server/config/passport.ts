@@ -1,4 +1,4 @@
-import User from './../app/models/user';
+import User from './../models/user';
 import * as passport from 'passport';
 import * as config from 'config';
 import * as bcrypt from 'bcrypt-nodejs';

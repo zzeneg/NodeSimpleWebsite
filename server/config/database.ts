@@ -1,6 +1,6 @@
 import * as sequelize from 'sequelize';
 
-import User from './../app/models/user';
+import User from './../models/user';
 
 export default class Database {
 	private static instance;

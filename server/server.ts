@@ -8,7 +8,7 @@ import * as exphbs from 'express-handlebars';
 
 import Database from './config/database';
 import Passport from './config/passport';
-import Routes from './app/routes';
+import Routes from './routes/routes';
 
 module Website {
 
@@ -20,10 +20,9 @@ module Website {
 
             var app = express();
 
-            //app.set('views', __dirname + '/../views');
-            app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', partialsDir: "views/partials/" }));
-            app.set('view engine', 'hbs');
-            app.use(express.static(__dirname + '/../bower_components'));
+            app.use(express.static('build/client'));
+            app.use('/bower_components', express.static('bower_components'));
+            app.use('/node_modules', express.static('node_modules'));
 
             app.use(cookieParser());
             app.use(session({ secret: 'victoriasecret', resave: true, saveUninitialized: true }));

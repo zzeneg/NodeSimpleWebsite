@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "typings install && bower install"
   },
   "author": "zzeneg",
   "license": "ISC",
   "dependencies": {
+    "angular2": "^2.0.0-beta.7",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.12.4",
     "config": "^1.19.0",
     "cookie-parser": "^1.3.4",
     "cookie-session": "^2.0.0-alpha.1",
+    "es6-promise": "^3.1.2",
+    "es6-shim": "^0.33.13",
     "express": "^4.12.3",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.11.2",
@@ -22,11 +26,17 @@
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "pg": "^4.3.0",
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.2",
     "sequelize": "^3.19.3",
-    "sqlite3": "^3.0.8"
+    "sqlite3": "^3.0.8",
+    "systemjs": "^0.19.23",
+    "zone.js": "^0.5.15"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-concurrent": "^2.2.1",
+    "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-env": "^0.4.4",
     "grunt-express-server": "^0.5.1",
