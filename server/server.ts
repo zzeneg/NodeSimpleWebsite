@@ -8,7 +8,7 @@ import * as exphbs from 'express-handlebars';
 
 import Database from './config/database';
 import Passport from './config/passport';
-import Routes from './routes/routes';
+import Auth from './routes/auth';
 
 module Website {
 
@@ -21,6 +21,8 @@ module Website {
             var app = express();
 
             app.use(express.static('build/client'));
+            app.use('/server', express.static('server'));
+            app.use('/client', express.static('client'));
             app.use('/bower_components', express.static('bower_components'));
             app.use('/node_modules', express.static('node_modules'));
 
@@ -30,8 +32,7 @@ module Website {
             app.use(passport.session());
             app.use(bodyParser.json());
             app.use(bodyParser.urlencoded({ extended: true }));
-            app.use(flash());
-            app.use('/', Routes.init());
+            app.use('/api/auth', Auth());
 
             Database.init('test');
             Passport.init();

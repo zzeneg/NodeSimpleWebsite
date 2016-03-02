@@ -1,0 +1,8 @@
+<header-widget></header-widget>
+<div *ngIf="user">
+Hello, {{user.email}}{{user.twitterDisplayName}}!
+</div>
+<div *ngIf="!user">
+<login-widget></login-widget>
+<signup-widget></signup-widget>
+</div>

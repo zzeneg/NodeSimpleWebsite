@@ -57,6 +57,8 @@ export default class Passport {
             passwordField: 'password',
         },
             (email, password, done) => {
+                console.log(email);
+                console.log(password);
                 // query the user from the database
                 User.userModel.find({ where: { email: email } })
                     .then((user) => {
@@ -85,6 +87,8 @@ export default class Passport {
             passwordField: 'password',
         },
             (email, password, done) => {
+                console.log(email);
+                console.log(password);
                 // query the user from the database
                 User.userModel.find({ where: { email: email } })
                     .then((user) => {
